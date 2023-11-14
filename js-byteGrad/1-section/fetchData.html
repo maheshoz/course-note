@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get & Display JSON Data</title>
+</head>
+<body>
+  <h1>Users: </h1>
+  <ul></ul>
+
+  <script>
+    const URL = 'https://jsonplaceholder.typicode.com/users';
+
+    fetch(URL)
+      .then(res=> res.json())
+      .then(data => {
+        // console.log(data);
+        data.forEach(user => {
+          const markup = `<li>${user.name}</li>`;
+          document.querySelector('ul').insertAdjacentHTML('beforeend', markup)
+        });
+
+      })
+      .catch(e => console.log(e));
+
+    // fetch data
+    fetch('https://reqres.in/api/users')
+      .then(res=> {
+        
+        // Guard clause
+        if(!res.ok) {
+          console.log('Problem');
+          return;
+        }
+        return res.json()
+      }
+      )
+      .then(data => {
+        console.log(data);
+        console.log(data.data[2].first_name);
+      })
+      .catch(e=> console.log(e))
+
+    // POST ,add new object
+    const newUser = {
+      name : 'Mahi',
+      job: 'Teacher'
+    };
+
+    fetch('https://reqres.in/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+      .then(res=> {
+        
+        // Guard clause
+        if(!res.ok) {
+          console.log('Problem');
+          return;
+        }
+        return res.json()
+      }
+      )
+      .then(data => {
+        console.log('Success POST');
+      })
+      .catch(e=> console.log(e))
+
+      // PUT, update  specific resource
+      const newUser2 = {
+      name : 'Mahi',
+      job: 'Teacher'
+    };
+    // add the resource id
+    fetch('https://reqres.in/api/users/33', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser2)
+    })
+      .then(res=> {
+        
+        // Guard clause
+        if(!res.ok) {
+          console.log('Problem');
+          return;
+        }
+        return res.json()
+      }
+      )
+      .then(data => {
+        console.log('Success PUT');
+      })
+      .catch(e=> console.log(e))  
+   
+    // DELETE
+    //   specify which specific resouce to DELETE
+    fetch('https://reqres.in/api/users/33', {
+      method: 'DELETE'
+    })
+      .then(res=> {
+        // Guard clause
+        if(!res.ok) {
+          console.log('Problem');
+          return;
+        }
+        return res.json()
+      }
+      )
+      .then(data => {
+        console.log('Success DELETE');
+      })
+      .catch(e=> console.log(e));
+
+  </script>
+</body>
+</html>

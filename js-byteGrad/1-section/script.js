@@ -88,7 +88,163 @@ headingEl.addEventListener('click', clickHandler);
 
 
 
+//Strings
+const text = 'Hello Javascript';
+
+// length
+console.log(text.length)
+//includes
+console.log(text.includes('java'));
+// toUpperCase() , trim(), trimStart(), trimEnd()
+// substring()
+// chaining
+text.toUpperCase().trimEnd();
+
+// NUMBERS
+const total = 1543.345
+
+// toFixed() -- 0
+console.log(total.toFixed()) //1543
+// toFixed() -- 2 
+console.log(total.toFixed(2)) //1543.34
 
 
+// BOOLEANS
+
+// When checking a string
+let str = 'Map of NYC';
+
+if (!str.includes('NYC')) {
+    console.log('text doesn\'t inlcude NYC');
+} else {
+    console.log('inlcudes');
+}
+
+// when dealing with server
+const response = {
+    statusCode: 500,
+    ok: false,
+    data: [1,2,3]
+}
+
+if(!response.ok) {
+    console.log('response error');
+}
+
+// ARRAYS
+let nums = [99, 3, 4, 22];
+
+// length
+console.log(nums.length);
+// push()
+nums.push(33);
+nums.includes(33); // true
+
+// forEach()
+nums.forEach(function (num) {
+    console.log(num * 2);
+});
+
+// objects in array
+let data = [{
+        name: 'john',
+        age: 33
+    },
+    {
+        name: 'mike',
+        age : 22
+    }
+
+]
+
+console.log(data[1].name);
+
+// OBJECTS
+
+let user = {
+    name: 'john',
+    age: 30,
+    hobbies: ['sing', 'programming', 'reading'],
+    address: {
+        city: 'miami',
+        state: 'florida'
+    }
+}
+// object in object
+console.log(user.address.city);
+
+// property name is same as property value
+const username = input.value;
+const password = input.value;
+
+const newUser = {
+    // username:  username,
+    username, 
+    password
+}
+
+// passing ojbect as argument to function
+const person = {
+    name: 'john',
+    age: 33
+}
+
+function logUser(user) {
+    console.log(user.name);
+    console.log(user.age);
+}
+
+logUser(person);
+
+// INCREMENT DEC
+
+// FUNCTIONS
+// function declarations, func expressions, arrow func
+
+// early return/ stop fun execution
+const checkValidity = (num)=> {
+    if(num < 0) {
+        console.log('invalid');
+        return;
+    }
+    console.log('valid');
+}
+
+checkValidity(-3);
+
+// HOISTING
+// var, func declaration is hoisted to the top
+var num;
+num = 0;
+
+a = 10;
+let a; // ref error
+
+// Timers (setInterval , setTimeout)
+
+setTimeout(function(){
+    console.log('hi');
+}, 2000);
+
+// run every 2sec
+setInterval(function(){
+    console.log('hi');
+}, 2000)
+
+// FETCH API
+const URL = 'https://jsonplaceholder.typicode.com/todos'
+fetch(URL)
+    .then((res)=>{
+        if (!res.ok) {
+            console.log('status');
+        }
+        return res.json();
+    })
+    .then((data)=>{
+        console.log(data)
+    })
+    .catch( error=>{
+        console.log(error);
+    });
 
 

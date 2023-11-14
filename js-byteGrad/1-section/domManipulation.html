@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM manipulation</title>
+</head>
+<body>
+  <h1 class="heading">Hello everyone</h1>
+
+  <button class="btn">Click</button>
+
+  <input type="text" class="input">
+
+  <h2>End</h2>
+
+  <br>
+  <hr>
+
+  <div class="container">
+    <h1 class="head">hello</h1>
+    <button class="btn2">Click</button>
+  </div>
+
+  <hr>
+  <h3>Event Bubbling - event delegation</h3>
+  <ul class="list">
+    <li class="item">1</li>
+    <li class="item">2</li>
+    <li class="item">3</li>
+    <li class="item">4</li>
+    <li class="item">5</li>
+  </ul>
+  <script>
+    const listEl = document.querySelector('.list')
+
+    listEl.addEventListener('click', function(event){
+      console.log(event.target);
+    })
+  </script>
+
+
+  <script>
+    const containerEl= document.querySelector('.container');
+
+    containerEl.addEventListener('click', function (event) {
+      console.log(event);
+      // actual target clicked
+      console.log(event.target);
+
+    })
+  </script>
+  
+  <script>
+    const buttonEl = document.querySelector('.btn');
+    const inputEl = document.querySelector('.input');
+    const headingEl = document.querySelector('.heading');
+    const headingTwoEl = document.querySelector('h2');
+    
+
+    // buttonEl.disabled = true;
+    // unfocus
+    // buttonEl.blur();
+    // focus
+    buttonEl.focus();
+
+    inputEl.value = 'js';
+
+    // headingEl.textContent = "hi js";
+    // headingEl.textContent = "hi <span>js</span>";
+    headingEl.innerHTML = "hi <span>js</span>";
+
+    // insert/add adjacent
+    headingEl.insertAdjacentHTML('beforebegin', '<h3>DOM - beforebegin</h3>')
+    headingEl.insertAdjacentHTML('afterend', '<h3>afterend</h3>')
+    headingEl.insertAdjacentHTML('afterbegin', '<span>aftebegin</span>')
+    headingEl.insertAdjacentHTML('beforeend', '<span>beforeend</span>')
+
+    // add multple lines with backtics
+    const num = 2;
+    const user = {
+      name: 'emily',
+      city: 'miami'
+    };
+
+    headingTwoEl.innerHTML = `
+      Hi <span>this is footer<span>
+      number is ${num}
+      user is ${user.name}
+    `;
+
+
+  </script>
+</body>
+</html>
