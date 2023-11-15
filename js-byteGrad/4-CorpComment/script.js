@@ -9,6 +9,7 @@ const counterEl = document.querySelector('.counter')
 const feedbackListEl = document.querySelector('.feedbacks');
 const submitBtnEl = document.querySelector('.submit-btn');
 const spinnerEl = document.querySelector('.spinner');
+const hashtagListEl = document.querySelector('.hashtags');
 
 const renderFeedbackItem = (feedbackItem)=> {
     // new feedback item HTML
@@ -204,3 +205,33 @@ fetch(`${BASE_API_URL}/feedbacks`)
     });
 
 
+// -- HASHTAB LIST COMPONENT --
+
+const clickHandler2 = (event) => {
+  // get clicked ele
+  const clickedEl = event.target;
+
+  // stop function if click happend in List container, but out button
+  if (clickedEl.className === 'hashtags') return;
+  // if (clickedEl.classList.contains('hashtags')) return;
+
+  // extract company name
+  const companyNameFromHashtag = clickedEl.textContent.substring(1).toLowerCase().trim();
+  console.log(companyNameFromHashtag, '- companyNameFromHashtag');
+  // iterate over each feedback item in the list
+  feedbackListEl.childNodes.forEach( childNode => {
+    // stop current iteration if it's a text node
+    if (childNode.nodeType === 3) return;
+
+    // extract company name
+    const companyNameFromFeedbackItem = childNode.querySelector('.feedback__company').textContent.toLowerCase().trim();
+
+    // remove feedback item from list if company names are not equal
+    if (companyNameFromHashtag !== companyNameFromFeedbackItem) {
+      childNode.remove();
+    }
+  });
+
+};
+
+hashtagListEl.addEventListener('click', clickHandler2);
