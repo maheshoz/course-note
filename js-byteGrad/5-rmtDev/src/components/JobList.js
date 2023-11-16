@@ -3,14 +3,19 @@ import {
   jobListSearchEl,
   jobDetailsContentEl,
   getData,
+  state,
+  RESULTS_PER_PAGE
 } from '../common.js';
 import renderJobDetails from './JobDetails.js';
 import renderSpinner from './Spinner.js';
 import renderError from './Error.js';
 
-const renderJobList = jobItems => {
+const renderJobList = () => {
+    // remove previous job items
+    jobListSearchEl.innerHTML = '';
+
      // render job items in search job list
-     jobItems.slice(0, 7).forEach(jobItem => {
+     state.searchJobItems.slice( (state.currentPage * RESULTS_PER_PAGE) - RESULTS_PER_PAGE , state.currentPage * RESULTS_PER_PAGE).forEach(jobItem => {
         const newJobItemHTML = `
         <li class="job-item">
           <a class="job-item__link" href="${jobItem.id}">
