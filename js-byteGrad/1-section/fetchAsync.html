@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Async Await</title>
+</head>
+<body  style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1>Async Await fetch</h1> <br>
+   <button class="btn" 
+   style="border: none; background: #0071e3; color: white; font-size: 30px;">
+    Get Users</button>
+
+    <script>
+      const btnEl = document.querySelector('.btn');
+
+      const clickHandlerPromise = () => {
+        
+        fetch('https://reqres.in/api/users')
+          .then(res => {
+            if (!res.ok) {
+              console.log('Problem');
+              return;
+            }
+            return res.json()
+          })
+          .then( data => {
+            console.log(data.data[3].first_name);
+          })
+          .catch(e=> console.log(e));
+
+      }
+
+      const clickHandlerAsync = async ()=> {
+
+        try {
+          const res = await fetch('https://reqres.in/api/users');
+          const data = await res.json();
+
+          if (!res.ok) {
+            console.log(data.description);
+            return;
+          }
+  
+          console.log(data.data[3].first_name);
+          
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      // Post user obj
+      const newUser = {
+        name : 'eon',
+        job: 'cs'
+      };
+
+       const clickHandlerAsyncPost = async ()=> {
+
+        try {
+          const res = await fetch('https://reqres.in/api/users', {
+            method: 'POST',
+            headers : {
+              'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(newUser)
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            console.log(data.description);
+            return;
+          }
+  
+          console.log(data, ' POST successfull');
+          
+        } catch (error) {
+          console.log(error);
+        }
+      }
+ 
+     // DELETE by id
+     
+
+      const clickHandlerAsyncDelete = async ()=> {
+
+        try {
+          // add the id to delete obj in resource
+          const res = await fetch('https://reqres.in/api/users/416', {
+            method: 'DELETE'
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            console.log(data.description);
+            return;
+          }
+
+          console.log(data, ' Delete successfull');
+          
+        } catch (error) {
+          console.log(error);
+        }
+      }      
+
+      // btnEl.addEventListener('click', clickHandler)
+      btnEl.addEventListener('click', clickHandlerAsync)
+      // btnEl.addEventListener('click', clickHandlerAsyncPost);
+      // btnEl.addEventListener('click', clickHandlerAsyncPut);
+      // btnEl.addEventListener('click', clickHandlerAsyncDelete);
+    </script>
+</body>
+</html>

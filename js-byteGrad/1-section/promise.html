@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise</title>
+  </head>
+  <body>
+    <h1>Promise</h1>
+
+    <script>
+      // PROMISES
+
+      // 1) crate a promise
+      const p1 = new Promise((resolve, reject) => {
+        const numberOfCustomer = 10;
+
+        if (numberOfCustomer > 5) {
+          resolve("Success"); // fullfilled with value
+        } else {
+          reject("Not enough promotion"); // failure with reason
+        }
+      });
+
+      // 2) Consume a promise with .then() & .catch()
+      p1.then((value) => {
+        debugger;
+        console.log(value);
+      }).catch((reason) => {
+        console.log(reason);
+      });
+
+      // 3) Consume a promise with async await
+      const checkResults = async () => {
+        try {
+          const value = await p1;
+          console.log(value);
+        } catch (reason) {
+          console.log(reason);
+        }
+      };
+      checkResults();
+
+      // 4) why & where use prmoses
+      // vast majority of code is synchronous.
+      // const a =1;
+      // const b =2;
+      //this isn't problem, cuz these operations are very fast,
+      // so they only freeze our program for a very short amount of time
+
+      // However, some operations may take a long time. we want to use asynchronous code for them
+      // so they don't freeze our program for so long.  Asynchronous code was commonly implemented with
+      // callback functions, but now increasingly with promises
+
+      // Most common examples of ussing promises
+      // - on frontend : Network requests (eg. Fetch API or Axios library)
+      // - on backend : Interacting with file system (eg, reading a file)
+
+      // 5) Fetch API (most common example of promises)
+      fetch("https://reqres.in/api/users")
+        .then((res) => {
+          if (!res.ok) {
+            // console.log("problem");
+            return Promise.reject("4xx or 5xx problem");
+          }
+
+          // console.log("res ok", res.ok);
+          // let resJson = res.json(); // is a promise
+          // console.log("res josn - ", resJson);
+
+          // return resJson;
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data.data[2].email);
+        })
+        .catch((error) => console.log(error));
+      
+      
+      // 6) Promise.all - Promise.any
+      // fetching 2 call, photos api, data api
+
+      Promise.all([fetchPhotoPromise, fetchCommentsPromise]).then((values) => {
+        // render post
+      });
+
+      // fetch from any 1, whicheve promise returns value first use that
+      Promise.any([fetchPhotoServer1Promise, fetchPhotoServer2Promise]).then(
+        (value) => {
+          // render
+        }
+      );
+    </script>
+  </body>
+</html>
