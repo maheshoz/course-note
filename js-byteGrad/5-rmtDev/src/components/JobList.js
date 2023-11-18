@@ -5,7 +5,8 @@ import {
   getData,
   state,
   RESULTS_PER_PAGE,
-  jobListBookmarksEl
+  jobListBookmarksEl,
+  formatDate
 } from '../common.js';
 import renderJobDetails from './JobDetails.js';
 import renderSpinner from './Spinner.js';
@@ -42,7 +43,7 @@ const renderJobList = (whichJobList = 'search') => {
               </div>
               <div class="job-item__right">
                   <i class="fa-solid fa-bookmark job-item__bookmark-icon ${state.bookmarkJobItems.some(bookmarkJobItem => bookmarkJobItem.id === jobItem.id) && 'job-item__bookmark-icon--bookmarked'}"></i>
-                  <time class="job-item__time">${jobItem.daysAgo}</time>
+                  <time class="job-item__time">${formatDate(jobItem.daysAgo)} ${jobItem.daysAgo}d</time>
               </div>
           </a>
         </li>

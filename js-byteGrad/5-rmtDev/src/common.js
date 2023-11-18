@@ -45,7 +45,15 @@ export const getData = async (completeURL) => {
   return data;
 }
 
+export const formatDate = daysAgo => {
+  const date = new Date();
+  const dayIndex = date.getDate() - daysAgo;
+  date.setDate(dayIndex);
+  return date.toLocaleString('en-US', {weekday: 'short'})
+}
 
-
-
-
+// npm install webpack webpack-cli --save-dev
+// npm install @babel/core @babel/preset-env babel-loader --save-dev
+// npm install core-js --save-dev
+// npm install postcs-loader cssnano autoprefixer postcss-pxtorem --save-dev
+// npm install css-loader mini-css-extract-plugin --save-dev
