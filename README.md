@@ -1,1 +1,1 @@
-react course notes
+course notes

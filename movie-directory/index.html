@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Directory</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <i class="fa fa-car" style="font-size: 24px"></i>
+      <p>Movie Directory</p>
+    </header>
+
+    <section class="main-wrapper">
+      <div class="left-wrapper">
+        <form id="form-wrapper" action="" class="form-wrapper">
+          <div class="input-wrapper">
+            <label for="movie_name">Movie Name</label>
+            <input type="text" id="movie_name" />
+          </div>
+          <div class="input-wrapper">
+            <label for="movie_genre">Movie genre</label>
+            <input type="text" id="movie_genre" />
+          </div>
+          <div class="input-wrapper">
+            <label for="rating">Rating</label>
+            <input type="number" id="rating" />
+          </div>
+          <div class="input-wrapper">
+            <label for="duration">Duration</label>
+            <input type="text" id="duration" />
+          </div>
+
+          <div class="error" id="error">
+            <p id="errorParagraph">All fields are required!</p>
+          </div>
+
+          <div class="submit-wrapper">
+            <input type="submit" id="submit" />
+          </div>
+        </form>
+      </div>
+      <div class="right-wrapper">
+        <div class="upper-section-wrapper">
+          <div class="search-wrapper">
+            <input type="text" id="search" placeholder="Search by movie name" />
+          </div>
+          <div class="filter-wrapper">
+            <select name="" id="select-movie">
+              <option value="" selected>Select Genre</option>
+              <option value="Action">Action</option>
+              <option value="Science Fiction">Science Fiction</option>
+              <option value="Thriller">Thriller</option>
+              <option value="comedy">Comedy</option>
+            </select>
+          </div>
+        </div>
+        <div class="bottom-section-wrapper"></div>
+        <!-- NO MOVIE FOUND -->
+        <div id='nomovie' class="nomovie" style="font-size: 22px; margin-top: 15px; font-weight: bold; display: none;">
+          No Movie Found!
+        </div>
+      </div>
+    </section>
+
+    <div style="margin-top: 400px;"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
