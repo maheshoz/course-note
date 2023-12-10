@@ -1,0 +1,10 @@
+p {
+  color: red;
+}
+
+.box {
+  background-color: red;
+  color: white;
+  height: 100px;
+  width: 100px;
+}

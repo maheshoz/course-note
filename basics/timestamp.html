@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TImestamp</title>
+</head>
+<body id="body">
+  <h1>Hello</h1>
+  <p>Time: </p>
+
+  <script>
+    function updateTime() {
+      document.getElementById("body").innerHTML = `
+        <h1>Hello</h1>
+        <p>Time: ${new Date().toLocaleTimeString()} </p>
+      `;
+    }
+
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>
